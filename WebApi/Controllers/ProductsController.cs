@@ -52,12 +52,12 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+        [HttpGet("{artNumber}")]
+        public async Task<IActionResult> Get(int artNumber)
         {
             try
             {
-                return new OkObjectResult(await _context.Products.FirstOrDefaultAsync(x => x.Id == id));
+                return new OkObjectResult(await _context.Products.FirstOrDefaultAsync(x => x.ArtNumber == artNumber));
             }
             catch (Exception ex)
             {
@@ -67,12 +67,12 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, Product product)
+        [HttpPut("{artNumber}")]
+        public async Task<IActionResult> Update(int artNumber, Product product)
         {
             try
             {
-                var _product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+                var _product = await _context.Products.FirstOrDefaultAsync(x => x.ArtNumber == artNumber);
                 if (_product != null)
                 {
                     _product.ArtNumber = product.ArtNumber;
@@ -97,12 +97,12 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete("{artNumber}")]
+        public async Task<IActionResult> Delete(int artNumber)
         {
             try
             {
-                var _product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+                var _product = await _context.Products.FirstOrDefaultAsync(x => x.ArtNumber == artNumber);
                 if (_product != null)
                 {
                     _context.Remove(_product);
